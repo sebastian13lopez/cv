@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio CV - Juan Sebastián López Rincón</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES GLOBALES --- */
+        :root {
+            --bg-base: #030303;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* Colores Neón Refinados */
+            --cyan: #00e5ff;       
+            --laravel-red: #ff2d20; 
+            --magenta: #d946ef;    
+            --aws-orange: #ff9900;  
+            
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET Y BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 229, 255, 0.07) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(217, 70, 239, 0.07) 0px, transparent 50%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+        /* --- ARQUITECTURA PANTALLA DIVIDIDA --- */
+        .layout-wrapper { display: flex; min-height: 100vh; max-width: 1300px; margin: 0 auto; }
+
+        .left-panel {
+            width: 42%; height: 100vh; position: sticky; top: 0;
+            padding: 6rem 4rem; display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        .hero-info h1 { 
+            font-family: var(--font-display); 
+            font-size: 3.5rem; 
+            line-height: 1.05; 
+            margin-bottom: 1.5rem; 
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .role { 
+            font-size: 1.1rem; font-weight: 500; color: var(--cyan); margin-bottom: 2rem; 
+            display: inline-block; background: rgba(0, 229, 255, 0.1); padding: 6px 16px; 
+            border-radius: 20px; border: 1px solid rgba(0, 229, 255, 0.2);
+            letter-spacing: 0.5px;
+        }
+        
+        .bio { color: var(--text-muted); font-size: 1rem; max-width: 380px; margin-bottom: 2.5rem; line-height: 1.8; font-weight: 300; }
+
+        /* Información de Contacto con Íconos */
+        .contact-details span {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .contact-details i {
+            font-size: 1.1rem;
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        }
+
+        .social-links { display: flex; gap: 1.2rem; margin-top: 2rem; }
+        .social-links a { 
+            display: flex; justify-content: center; align-items: center;
+            width: 45px; height: 45px; border-radius: 50%;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
+            font-size: 1.2rem; color: var(--text-muted); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        .social-links a:hover { 
+            color: var(--cyan); background: rgba(0, 229, 255, 0.05);
+            border-color: var(--cyan); transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.15); 
+        }
+
+        .right-panel { width: 58%; padding: 6rem 2rem 6rem 0; display: flex; flex-direction: column; }
+
+        /* --- TÍTULOS --- */
+        .section-title { 
+            font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
+            display: flex; align-items: center; gap: 15px; margin-bottom: 2.5rem; color: #fff;
+        }
+        .section-divider { height: 1px; background: linear-gradient(90deg, var(--border-color), transparent); margin: 4rem 0; }
+
+        /* --- TARJETAS CRISTAL --- */
+        .cards-grid { display: grid; gap: 1.8rem; }
+
+        .interactive-card {
+            background: rgba(255, 255, 255, 0.015); 
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 2.5rem; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .interactive-card::before { 
+            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.04), transparent 40%); 
+            z-index: 0; pointer-events: none; transition: opacity 0.3s ease; opacity: 0;
+        }
+        .interactive-card:hover::before { opacity: 1; }
+        
+        .interactive-card:hover { 
+            transform: translateY(-5px) scale(1.01); 
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .card-content { position: relative; z-index: 1; }
+        .interactive-card h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.8rem; color: #fff; display: flex; align-items: center; gap: 12px; }
+        .interactive-card p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.8rem; line-height: 1.6; font-weight: 300; }
+
+        /* Íconos de Tarjetas */
+        .icon-cyan { color: var(--cyan); text-shadow: 0 0 12px rgba(0, 229, 255, 0.5); }
+        .icon-magenta { color: var(--magenta); text-shadow: 0 0 12px rgba(217, 70, 239, 0.5); }
+        .icon-red { color: var(--laravel-red); text-shadow: 0 0 12px rgba(255, 45, 32, 0.5); }
+        .icon-orange { color: var(--aws-orange); text-shadow: 0 0 12px rgba(255, 153, 0, 0.5); }
+
+        /* --- ETIQUETAS TECH (Con Íconos y Colores) --- */
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { 
+            background: rgba(255, 255, 255, 0.03); color: var(--text-main); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 500; 
+            display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;
+        }
+        .tag:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+        
+        /* Colores de los Íconos dentro de las etiquetas */
+        .tag i { font-size: 1.1rem; }
+        .tag-cyan i { color: var(--cyan); text-shadow: 0 0 8px rgba(0, 229, 255, 0.6); }
+        .tag-magenta i { color: var(--magenta); text-shadow: 0 0 8px rgba(217, 70, 239, 0.6); }
+        .tag-red i { color: var(--laravel-red); text-shadow: 0 0 8px rgba(255, 45, 32, 0.6); }
+        .tag-orange i { color: var(--aws-orange); text-shadow: 0 0 8px rgba(255, 153, 0, 0.6); }
+
+        /* --- IMAGEN CERTIFICADO --- */
+        .cert-container { 
+            margin-top: 2rem; border-radius: 16px; overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s ease; 
+            position: relative;
+        }
+        .cert-container::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 80%, rgba(0,0,0,0.4)); pointer-events: none;
+        }
+        .cert-image { width: 100%; height: auto; display: block; filter: brightness(0.85) contrast(1.1); transition: all 0.5s ease; }
+        .card-aws:hover .cert-container { border-color: rgba(255, 153, 0, 0.3); box-shadow: 0 10px 30px rgba(255, 153, 0, 0.1); }
+        .card-aws:hover .cert-image { filter: brightness(1) contrast(1); transform: scale(1.03); }
+
+        /* --- ANIMACIONES --- */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .layout-wrapper { flex-direction: column; }
+            .left-panel { width: 100%; height: auto; position: relative; padding: 4rem 2rem 2rem; text-align: left; }
+            .right-panel { width: 100%; padding: 2rem 2rem 6rem 2rem; gap: 3rem; }
+            .hero-info h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-wrapper" id="cv-root">
+        
+        <aside class="left-panel">
+            <div class="hero-info fade-up">
+                <h1>Juan Sebastián<br>López Rincón</h1>
+                <div class="role">&lt; Design Engineer & Web Dev /&gt;</div>
+                <p class="bio">
+                    Ayudo a transformar ideas en experiencias digitales funcionales. Uno la creatividad visual del diseño UI/UX con la solidez lógica del código para construir sitios web atractivos, rápidos y escalables.
+                </p>
+                
+                <div class="contact-details text-muted" style="display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem;">
+                    <span><i class="fa-solid fa-location-arrow"></i> Ocaña, N. de S. - Colombia</span>
+                    <span><i class="fa-solid fa-envelope"></i> jslopezr@ufpso.edu.co</span>
+                    <span><i class="fa-brands fa-whatsapp"></i> +57 318 100 4081</span>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/sebastian13lopez" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/juan-sebastian-lopez-rincon-8104693b2/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="right-panel">
+            
+            <section>
+                <h2 class="section-title fade-up">Mis Servicios</h2>
+                <div class="cards-grid fade-up">
+                    
+                    <div class="interactive-card">
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-mobile-screen icon-cyan"></i> Desarrollo Frontend</h3>
+                            <p>Creación de sitios web rápidos, interactivos y adaptables a cualquier pantalla. Tu marca tendrá una presencia digital moderna y accesible.</p>
+                            <div class="tech-tags">
+                                <span class="tag tag-cyan"><i class="fa-brands fa-js"></i> JavaScript</span>
+                                <span class="tag tag-cyan"><i class="fa-brands fa-html5"></i> HTML5</span>
+                                <span class="tag tag-cyan"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card card-design">
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-wand-magic-sparkles icon-magenta"></i> UI & Audiovisual</h3>
+                            <p>Diseño de interfaces gráficas intuitivas. Edición profesional de video e imágenes para campañas, redes sociales y contenido multimedia.</p>
+                            <div class="tech-tags">
+                                <span class="tag tag-magenta"><i class="fa-brands fa-figma"></i> Figma</span>
+                                <span class="tag tag-magenta"><i class="fa-solid fa-image"></i> Adobe Suite</span>
+                                <span class="tag tag-magenta"><i class="fa-solid fa-clapperboard"></i> Premiere</span>
+                                <span class="tag tag-magenta"><i class="fa-solid fa-film"></i> DaVinci</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card card-laravel">
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-server icon-red"></i> Backend & Datos</h3>
+                            <p>Desarrollo de la lógica interna de tu aplicación. Desde paneles de administración seguros hasta gestión eficiente de bases de datos.</p>
+                            <div class="tech-tags">
+                                <span class="tag tag-red"><i class="fa-brands fa-laravel"></i> Laravel</span>
+                                <span class="tag tag-red"><i class="fa-brands fa-php"></i> PHP</span>
+                                <span class="tag tag-red"><i class="fa-solid fa-database"></i> SQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="section-divider fade-up"></div>
+
+            <section>
+                <h2 class="section-title fade-up">Educación & Respaldo</h2>
+                
+                <div class="cards-grid fade-up">
+                    <div class="interactive-card">
+                        <div class="card-content">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h3 style="margin: 0;"><i class="fa-solid fa-book-open-reader icon-cyan"></i> Ing. de Software</h3>
+                                <span style="color: var(--cyan); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.5px;">EN CURSO</span>
+                            </div>
+                            <h4 style="color: #fff; font-weight: 400; margin-bottom: 15px; font-size: 1rem;">Universidad Francisco de Paula Santander (UFPSO)</h4>
+                            <p>Construyendo soluciones respaldadas por fuertes bases lógicas, algoritmos eficientes y buenas prácticas de ingeniería.</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card card-aws">
+                        <div class="card-content">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h3 style="margin: 0;"><i class="fa-brands fa-aws icon-orange"></i> Cloud Architecture</h3>
+                                <span style="color: var(--aws-orange); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.5px;">JUN 2025</span>
+                            </div>
+                            <h4 style="color: #fff; font-weight: 400; margin-bottom: 15px; font-size: 1rem;">Talento Tech & MinTIC (148 Horas)</h4>
+                            <p>Capacitado para entender y operar infraestructuras en la nube, garantizando despliegues seguros en AWS.</p>
+                            <div class="tech-tags">
+                                <span class="tag tag-orange"><i class="fa-brands fa-aws"></i> AWS Basic</span>
+                                <span class="tag tag-orange"><i class="fa-solid fa-network-wired"></i> Cloud Computing</span>
+                            </div>
+
+                            <div class="cert-container">
+                                <img src="https://i.postimg.cc/s2jkNXkY/5421404e-a955-4c79-9c30-53c8a86e8576.jpg" alt="Certificado AWS" class="cert-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // EFECTO SPOTLIGHT DINÁMICO
+        document.getElementById("cv-root").addEventListener("mousemove", (e) => {
+            for (const card of document.querySelectorAll(".interactive-card")) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            }
+        });
+
+        // ANIMACIONES SCROLL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: "0px 0px -50px 0px" });
+        
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
